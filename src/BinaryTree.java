@@ -18,7 +18,39 @@ public class BinaryTree {
         return n;
     }
 
-    public Node delete(int i) { return null; }
+    public void delete(int i) {
+        root = recursiveRemove(root, i);
+    }
 
-    public Node find(int i) { return null; }
+    private Node recursiveRemove(Node n, int i) {
+        if (n == null) return null;
+        if (i < n.value) {
+            n.left = recursiveRemove(n.left, i);
+            return n;
+        } else if (i > n.value) {
+            n.right = recursiveRemove(n.right, i);
+            return n;
+        } else {
+            if (n.left == null && n.right == null) {
+                return null;
+            } else if (n.left != null && n.right == null) {
+                return n.left;
+            } else if (n.left == null && n.right != null) {
+                return n.right;
+            } else {
+                Node maxLeft = findMax(n.left);
+                recursiveRemove(n.left, maxLeft.value);
+                maxLeft.left = n.left;
+                maxLeft.right = n.right;
+                return maxLeft;
+            }
+        }
+    }
+
+    private Node findMax(Node n) {
+        while (n.right != null) {
+            n = n.right;
+        }
+        return n;
+    }
 }
