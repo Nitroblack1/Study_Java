@@ -4,4 +4,31 @@ public class Main {
     public static void main(String[] args) {
 
     }
+
+    public void preOrderTraversal(Node n)
+    {
+        if (n == null) return;
+
+        System.out.print(n.value+" ");
+        preOrderTraversal(n.left);
+        preOrderTraversal(n.right);
+    }
+
+    public void inOrderTraversal(Node n)
+    {
+        if (n == null) return;
+
+        inOrderTraversal(n.left);
+        System.out.print(n.value+" ");
+        inOrderTraversal(n.right);
+    }
+
+    public  void postOrderTraversal(Node n)
+    {
+        if (n == null) return;
+
+        postOrderTraversal(n.left);
+        postOrderTraversal(n.right);
+        System.out.print(n.value+" ");
+    }
 }
