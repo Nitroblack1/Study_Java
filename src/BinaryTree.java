@@ -53,4 +53,15 @@ public class BinaryTree {
         }
         return n;
     }
+
+    public Node search(int k, Node v) {
+        if (v == null) return null;
+        if (v.value == k) return v;
+
+        if (k < v.value) {
+            return search(k, v.left);
+        } else {
+            return search(k, v.right);
+        }
+    }
 }
